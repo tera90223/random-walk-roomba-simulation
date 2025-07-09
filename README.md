@@ -46,6 +46,20 @@ These methods form the foundation for simulating robot cleaning behavior.
 
 ---
 
+## 🔍 Design Insight: Abstract Classes
+
+This project uses **abstract classes** (`RectangularRoom` and `Robot`) to enforce structure while allowing flexible implementation. Abstract classes define the essential methods and attributes all subclasses must have but leave specific behaviors—like how a robot moves or how a room is constructed—to be defined by subclasses.
+
+This design pattern helped me:
+
+* Focus on shared state and behavior while isolating differences
+* Create reusable code scaffolding
+* Understand how simulation components (like rooms and robots) can be extended for more complex behavior (e.g., furnished rooms, faulty robots)
+
+By implementing the base logic in abstract classes and deferring custom behavior to subclasses, I practiced building systems that scale in complexity without becoming chaotic.
+
+---
+
 ## 🚧 Next Steps (To Be Implemented)
 
 - `StandardRobot` and `FaultyRobot` subclasses for movement behavior

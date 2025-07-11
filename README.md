@@ -22,6 +22,18 @@ Represents a cleaning robot with:
 - Methods to get/set state
 - Designed to be extended by movement strategy subclasses
 
+### ✅ `EmptyRoom` (Subclass of RectangularRoom)
+A basic room with no obstacles.
+- Overrides `get_num_tiles` using total `width x height`
+- `is_position_valid` defers directly to `is_position_in_room`
+
+### ✅ `FurnishedRoom` (Subclass of RectangularRoom)
+A room that includes randomly placed furniture. 
+- Furniture is stored as a list of tile coordinates
+- `is_position_valid` is overridden to exclude furnished tiles.
+- Implements furniture-safe random position generation
+- Uses wrapper methods (`is_tile_furnished`, `is_position_furnished`) for clarity
+  
 ---
 
 ## 🔧 Implemented Methods So Far
@@ -30,17 +42,22 @@ Represents a cleaning robot with:
 - `get_dirt_amount`
 - `get_num_cleaned_tiles`
 - `is_tile_cleaned`
+- `is_tile_furnished` (FurnishedRoom only)
+- `is_position_furnished` (FurnishedRoom only)
 - `is_position_in_room`
 - `get_robot_position`, `set_robot_position`
 - `get_robot_direction`, `set_robot_direction`
+- `get_random_postion` (for both Empty and Furnished rooms)
+- `get_num_tiles` (customized per subclass)
 
-These methods form the foundation for simulating robot cleaning behavior.
+These methods form the foundation for simulating robot cleaning behavior across various environments, inclduing rooms with and without obstacles.
 
 ---
 
 ## 🧱 Data Structures
 
 - The room is backed by a dictionary: `{(m, n): dirt_amount}`
+- Furniture tiles are stored in a list: `[(x,y), ...]`
 - Floating-point positions are mapped to tiles using `int(x), int(y)`
 - Dirt is non-negative and clipped when cleaned beyond available amount
 

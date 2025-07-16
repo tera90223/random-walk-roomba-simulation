@@ -33,6 +33,32 @@ A room that includes randomly placed furniture.
 - `is_position_valid` is overridden to exclude furnished tiles.
 - Implements furniture-safe random position generation
 - Uses wrapper methods (`is_tile_furnished`, `is_position_furnished`) for clarity
+
+### ✅ `StandardRobot` (Subclass of Robot)
+Implements the baseline movement behavior of a robot.
+- Moves in its current direction by speed units
+- Cleans the tile it lands on with its full capacity
+- If new position is invalid (e.g., off-grid or on furniture), rotates randomly
+
+### ✅ `FaultyRobot` (Subclass of Robot)
+A Standard Robot with a probabilistic error to become faulty.
+- With probability `p`, the robot gets faulty at each time step
+- When faulty, it does **not** clean and randomly changes direction
+- Faults are visualized in orange in the simulation for clarity.
+- Method `gets_faulty()` encapsulates the probability check
+
+### Honorary Class: 🎥The Visualization Overhaul: `ColabRobotVisualizer`
+To enable simulation in Colab, I replaced the original `RobotVisualization` (Tkinter-based) with a custom `ColabRobotVisualizer` using `matplotlib`.
+
+Key features:
+- Dynamic grid plotting with robot positions and directions
+- Cleaned tiles fade from black to white based on dirt level
+- Furniture tiles rendered in red
+- Faulty robots flash orange
+- Option to **record simulation as a GIF**
+- Arrow indicators show real-time robot direction
+
+This change not only modernized the interface but helped debug and interpret robot behaviors more intuitively.
   
 ---
 
@@ -49,6 +75,8 @@ A room that includes randomly placed furniture.
 - `get_robot_direction`, `set_robot_direction`
 - `get_random_postion` (for both Empty and Furnished rooms)
 - `get_num_tiles` (customized per subclass)
+- `gets_faulty`, `set_faulty_probability` (FaultyRobot only)
+- `update_position_and_clean` (for both Standard and Faulty Robot)
 
 These methods form the foundation for simulating robot cleaning behavior across various environments, inclduing rooms with and without obstacles.
 
@@ -60,6 +88,11 @@ These methods form the foundation for simulating robot cleaning behavior across 
 - Furniture tiles are stored in a list: `[(x,y), ...]`
 - Floating-point positions are mapped to tiles using `int(x), int(y)`
 - Dirt is non-negative and clipped when cleaned beyond available amount
+- Robot positions are stored as floating-point `Position` objects to support sub-tile precision
+- Robot direction is a float (in degrees 0–360) used for movement logic and visual arrows
+- The visualizer uses tile state (clean/furniture/dirt level) to assign color dynamically
+- Frames for visualization are optionally saved as PNGs in a `frames/` directory and compiled into GIFs
+- Faulty behavior is determined by a class-level probability `p` (adjustable via `set_faulty_probability()`)
 
 ---
 
@@ -77,12 +110,9 @@ By implementing the base logic in abstract classes and deferring custom behavior
 
 ---
 
-## 🚧 Next Steps (To Be Implemented)
+## 📎 Note on Appendix (Subproblems 5 & 6)
 
-- `StandardRobot` and `FaultyRobot` subclasses for movement behavior
-- `EmptyRoom` and `FurnishedRoom` subclasses to explore obstacles
-- Simulation runner to track efficiency and performance over time
-- Visualization and analysis of cleaning patterns
+While subproblems 5 and 6 were completed, they required computationally expensive simulations (e.g. 20 trials across 10 robot counts in a 20×20 room). As a result, I moved supporting functions, extended plots, and exploratory code to an appendix section to avoid slowing down the core repo. These experiments explore performance tradeoffs between robot types and include helpful visualizations and simulation metrics.
 
 ---
 
@@ -93,6 +123,9 @@ By implementing the base logic in abstract classes and deferring custom behavior
 - Floating-point vs grid-based coordinate mapping
 - Randomized simulation setup
 - Data structure design (dict-based tile tracking)
+- Custom visualization using `matplotlib` for animation
+- GIF generation and frame management with `PIL`
+- Performance benchmarking of stochastic simulations
 - Methodical debugging and testing
 - Git/GitHub version control and documentation
 

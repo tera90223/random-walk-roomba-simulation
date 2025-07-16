@@ -62,7 +62,7 @@ This change not only modernized the interface but helped debug and interpret rob
   
 ---
 
-## 🔧 Implemented Methods So Far
+## 🔧 Implemented Methods
 
 - `clean_tile_at_position`
 - `get_dirt_amount`
@@ -136,6 +136,11 @@ While subproblems 5 and 6 were completed, they required computationally expensiv
 This project is part of [MIT 6.0002 – Introduction to Computational Thinking and Data Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/)
 
 ---
+## 🎞️ Visual Demos
+|Empty Room | Furnished Room | Faulty Robot|
+| - | -|-|
+|![Standard Robot in Empty Room Simulation](assets/robot_simulation_emptyroom.gif) | |![Standard Robot in Furnished Room Simulation](assets/robot_simulation_furnishedroom.gif) | |![Faulty Robot in Empty Room Simulation](assets/robot_simulation_faulty.gif) |
+
 
 ## 🧠 Personal Note
 

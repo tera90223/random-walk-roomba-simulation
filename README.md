@@ -139,7 +139,7 @@ This project is part of [MIT 6.0002 – Introduction to Computational Thinking a
 ## 🎞️ Visual Demos
 |Empty Room | Furnished Room | Faulty Robot|
 | - | -|-|
-|![Standard Robot in Empty Room Simulation](assets/robot_simulation_emptyroom.gif) | |![Standard Robot in Furnished Room Simulation](assets/robot_simulation_furnishedroom.gif) | |![Faulty Robot in Empty Room Simulation](assets/robot_simulation_faulty.gif) |
+|![Standard Robot in Empty Room Simulation](assets/robot_simulation_emptyroom.gif) | ![Standard Robot in Furnished Room Simulation](assets/robot_simulation_furnishedroom.gif) | ![Faulty Robot in Empty Room Simulation](assets/robot_simulation_faulty.gif) |
 
 
 ## 🧠 Personal Note
